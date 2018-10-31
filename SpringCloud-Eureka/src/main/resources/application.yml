@@ -1,0 +1,15 @@
+# server port config
+server:
+  port: 8081
+
+# eureka registry config. The server itself will not be discovered.
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    # Here is important configutaion. Otherwise, http://localhost:8761/eureka will be added as peer 
+    # and will report connection timeout exception when Eureka replicate the registry info to http://localhost:8761/eureka.
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+  server:
+    waitTimeInMsWhenSyncEmpty: 0
